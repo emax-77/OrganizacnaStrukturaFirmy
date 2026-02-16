@@ -5,18 +5,15 @@ Partial Public Class FrmHlavne
 
     Public Sub New()
         InitializeComponent()
-
-        AddHandler btnOrganizacnaStruktura.Click, AddressOf OtvorOrganizacnuStrukturu
-        AddHandler btnZamestnanci.Click, AddressOf OtvorZamestnancov
     End Sub
 
-    Private Sub OtvorOrganizacnuStrukturu(sender As Object, e As EventArgs)
+    Private Sub OtvorOrganizacnuStrukturu(sender As Object, e As EventArgs) Handles btnOrganizacnaStruktura.Click
         Using frm As New FrmOrganizacnaStruktura()
             frm.ShowDialog(Me)
         End Using
     End Sub
 
-    Private Sub OtvorZamestnancov(sender As Object, e As EventArgs)
+    Private Sub OtvorZamestnancov(sender As Object, e As EventArgs) Handles btnZamestnanci.Click
         Using frm As New FrmZamestnanci()
             frm.ShowDialog(Me)
         End Using

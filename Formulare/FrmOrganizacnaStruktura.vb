@@ -7,19 +7,14 @@ Partial Public Class FrmOrganizacnaStruktura
 
     Public Sub New()
         InitializeComponent()
-
         Dim pripojenie = SqlPripojenie.ZiskajPripojovaciRetazec()
         _logika = New OrganizacnaStrukturaLogika(New FirmaCRUD(pripojenie), New DiviziaCRUD(pripojenie), New ProjektCRUD(pripojenie), New OddelenieCRUD(pripojenie))
         _zamestnanecCrud = New ZamestnanecCRUD(pripojenie)
-
-        AddHandler Load, AddressOf FrmOrganizacnaStruktura_Load
-        AddHandler btnPridat.Click, AddressOf PridajUzol
-        AddHandler btnUpravit.Click, AddressOf UpravUzol
-        AddHandler btnVymazat.Click, AddressOf VymazUzol
-        AddHandler strom.AfterSelect, AddressOf StromPoVybere
     End Sub
 
-    Private Sub FrmOrganizacnaStruktura_Load(sender As Object, e As EventArgs)
+
+
+    Private Sub FrmOrganizacnaStruktura_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         hlavnySplit.Panel1MinSize = 250
         hlavnySplit.Panel2MinSize = 300
 
@@ -63,7 +58,7 @@ Partial Public Class FrmOrganizacnaStruktura
         root.Expand()
     End Sub
 
-    Private Sub StromPoVybere(sender As Object, e As TreeViewEventArgs)
+    Private Sub StromPoVybere(sender As Object, e As TreeViewEventArgs) Handles strom.AfterSelect
         txtNazov.Text = String.Empty
         txtKod.Text = String.Empty
         txtVeduci.Text = String.Empty
@@ -107,7 +102,7 @@ Partial Public Class FrmOrganizacnaStruktura
         Return If(String.IsNullOrWhiteSpace(meno), "nezadané", meno)
     End Function
 
-    Private Sub PridajUzol(sender As Object, e As EventArgs)
+    Private Sub btnPridat_Click(sender As Object, e As EventArgs) Handles btnPridat.Click
         Dim vybrany = strom.SelectedNode
 
         If vybrany Is Nothing Then
@@ -168,7 +163,7 @@ Partial Public Class FrmOrganizacnaStruktura
         End If
     End Sub
 
-    Private Sub UpravUzol(sender As Object, e As EventArgs)
+    Private Sub btnUpravit_Click(sender As Object, e As EventArgs) Handles btnUpravit.Click
         Dim vybrany = strom.SelectedNode
         If vybrany Is Nothing Then
             MessageBox.Show(Me, "Najprv vyberte uzol.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -219,7 +214,7 @@ Partial Public Class FrmOrganizacnaStruktura
         End If
     End Sub
 
-    Private Sub VymazUzol(sender As Object, e As EventArgs)
+    Private Sub btnVymazat_Click(sender As Object, e As EventArgs) Handles btnVymazat.Click
         Dim vybrany = strom.SelectedNode
         If vybrany Is Nothing Then
             MessageBox.Show(Me, "Najprv vyberte uzol.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Information)

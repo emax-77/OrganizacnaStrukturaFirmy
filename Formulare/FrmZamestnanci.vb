@@ -9,18 +9,12 @@ Partial Public Class FrmZamestnanci
 
     Public Sub New()
         InitializeComponent()
-
         Dim pripojenie = SqlPripojenie.ZiskajPripojovaciRetazec()
         Dim strukturaLogika = New OrganizacnaStrukturaLogika(New FirmaCRUD(pripojenie), New DiviziaCRUD(pripojenie), New ProjektCRUD(pripojenie), New OddelenieCRUD(pripojenie))
         _logika = New ZamestnanecLogika(New ZamestnanecCRUD(pripojenie), strukturaLogika)
-
-        AddHandler Load, AddressOf FrmZamestnanci_Load
-        AddHandler btnPridat.Click, AddressOf PridajZamestnanca
-        AddHandler btnUpravit.Click, AddressOf UpravZamestnanca
-        AddHandler btnVymazat.Click, AddressOf VymazZamestnanca
     End Sub
 
-    Private Sub FrmZamestnanci_Load(sender As Object, e As EventArgs)
+    Private Sub FrmZamestnanci_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _zaradenia = _logika.ZiskajZaradenia()
         _uzly = _logika.ZiskajUzly()
         NacitajZamestnancov()
@@ -38,7 +32,7 @@ Partial Public Class FrmZamestnanci
         Return TryCast(gridZamestnanci.CurrentRow.DataBoundItem, mZamestnanec)
     End Function
 
-    Private Sub PridajZamestnanca(sender As Object, e As EventArgs)
+    Private Sub PridajZamestnanca(sender As Object, e As EventArgs) Handles btnPridat.Click
         _zaradenia = _logika.ZiskajZaradenia()
         _uzly = _logika.ZiskajUzly()
         Using frm As New FrmUpravaZamestnanca(_zaradenia, _uzly, _logika)
@@ -49,7 +43,7 @@ Partial Public Class FrmZamestnanci
         End Using
     End Sub
 
-    Private Sub UpravZamestnanca(sender As Object, e As EventArgs)
+    Private Sub UpravZamestnanca(sender As Object, e As EventArgs) Handles btnUpravit.Click
         Dim vybrany = ZiskajVybranyZaznam()
         If vybrany Is Nothing Then
             MessageBox.Show(Me, "Najprv vyber zamestnanca.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -66,7 +60,7 @@ Partial Public Class FrmZamestnanci
         End Using
     End Sub
 
-    Private Sub VymazZamestnanca(sender As Object, e As EventArgs)
+    Private Sub VymazZamestnanca(sender As Object, e As EventArgs) Handles btnVymazat.Click
         Dim vybrany = ZiskajVybranyZaznam()
         If vybrany Is Nothing Then
             MessageBox.Show(Me, "Najprv vyber zamestnanca.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Information)

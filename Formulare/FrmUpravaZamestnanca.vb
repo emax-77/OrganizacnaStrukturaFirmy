@@ -41,12 +41,9 @@ Partial Public Class FrmUpravaZamestnanca
                 End If
             Next
         End If
-
-        AddHandler btnOK.Click, AddressOf Potvrd
-        AddHandler btnZrusit.Click, AddressOf Zrus
     End Sub
 
-    Private Sub Potvrd(sender As Object, e As EventArgs)
+    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         If String.IsNullOrWhiteSpace(txtMeno.Text) OrElse String.IsNullOrWhiteSpace(txtPriezvisko.Text) Then
             MessageBox.Show(Me, "Meno a priezvisko sú povinné.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
@@ -90,10 +87,9 @@ Partial Public Class FrmUpravaZamestnanca
         Close()
     End Sub
 
-    Private Sub Zrus(sender As Object, e As EventArgs)
+    Private Sub btnZrusit_Click(sender As Object, e As EventArgs) Handles btnZrusit.Click
         DialogResult = DialogResult.Cancel
         Close()
     End Sub
-
 
 End Class

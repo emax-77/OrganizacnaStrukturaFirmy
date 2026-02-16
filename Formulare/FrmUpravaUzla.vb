@@ -7,15 +7,11 @@ Partial Public Class FrmUpravaUzla
 
     Public Sub New(Optional nazov As String = Nothing, Optional kod As String = Nothing)
         InitializeComponent()
-
         txtNazov.Text = nazov
         txtKod.Text = kod
-
-        AddHandler btnOK.Click, AddressOf Potvrd
-        AddHandler btnZrusit.Click, AddressOf Zrus
     End Sub
 
-    Private Sub Potvrd(sender As Object, e As EventArgs)
+    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         If String.IsNullOrWhiteSpace(txtNazov.Text) OrElse String.IsNullOrWhiteSpace(txtKod.Text) Then
             MessageBox.Show(Me, "Názov a kód sú povinné.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
@@ -27,10 +23,8 @@ Partial Public Class FrmUpravaUzla
         Close()
     End Sub
 
-    Private Sub Zrus(sender As Object, e As EventArgs)
+    Private Sub btnZrusit_Click(sender As Object, e As EventArgs) Handles btnZrusit.Click
         DialogResult = DialogResult.Cancel
         Close()
     End Sub
-
-
 End Class

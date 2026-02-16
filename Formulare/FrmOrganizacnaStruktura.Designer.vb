@@ -22,14 +22,14 @@ Partial Class FrmOrganizacnaStruktura
         Me.strom = New System.Windows.Forms.TreeView()
         Me.TableLayoutPanel = New System.Windows.Forms.TableLayoutPanel()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.btnUpravit = New System.Windows.Forms.Button()
         Me.btnPridat = New System.Windows.Forms.Button()
+        Me.btnUpravit = New System.Windows.Forms.Button()
         Me.btnVymazat = New System.Windows.Forms.Button()
-        Me.txtNazov = New System.Windows.Forms.TextBox()
-        Me.txtKod = New System.Windows.Forms.TextBox()
+        Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtNazov = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtKod = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtVeduci = New System.Windows.Forms.TextBox()
         CType(Me.hlavnySplit, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,6 +91,33 @@ Partial Class FrmOrganizacnaStruktura
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(546, 34)
         Me.FlowLayoutPanel1.TabIndex = 0
         '
+        'btnPridat
+        '
+        Me.btnPridat.Location = New System.Drawing.Point(3, 3)
+        Me.btnPridat.Name = "btnPridat"
+        Me.btnPridat.Size = New System.Drawing.Size(75, 23)
+        Me.btnPridat.TabIndex = 1
+        Me.btnPridat.Text = "Pridať"
+        Me.btnPridat.UseVisualStyleBackColor = True
+        '
+        'btnUpravit
+        '
+        Me.btnUpravit.Location = New System.Drawing.Point(84, 3)
+        Me.btnUpravit.Name = "btnUpravit"
+        Me.btnUpravit.Size = New System.Drawing.Size(75, 23)
+        Me.btnUpravit.TabIndex = 0
+        Me.btnUpravit.Text = "Upraviť"
+        Me.btnUpravit.UseVisualStyleBackColor = True
+        '
+        'btnVymazat
+        '
+        Me.btnVymazat.Location = New System.Drawing.Point(165, 3)
+        Me.btnVymazat.Name = "btnVymazat"
+        Me.btnVymazat.Size = New System.Drawing.Size(75, 23)
+        Me.btnVymazat.TabIndex = 2
+        Me.btnVymazat.Text = "Vymazať"
+        Me.btnVymazat.UseVisualStyleBackColor = True
+        '
         'FlowLayoutPanel2
         '
         Me.FlowLayoutPanel2.Controls.Add(Me.Label1)
@@ -104,50 +131,6 @@ Partial Class FrmOrganizacnaStruktura
         Me.FlowLayoutPanel2.Size = New System.Drawing.Size(194, 130)
         Me.FlowLayoutPanel2.TabIndex = 1
         '
-        'btnUpravit
-        '
-        Me.btnUpravit.Location = New System.Drawing.Point(84, 3)
-        Me.btnUpravit.Name = "btnUpravit"
-        Me.btnUpravit.Size = New System.Drawing.Size(75, 23)
-        Me.btnUpravit.TabIndex = 0
-        Me.btnUpravit.Text = "Upraviť"
-        Me.btnUpravit.UseVisualStyleBackColor = True
-        '
-        'btnPridat
-        '
-        Me.btnPridat.Location = New System.Drawing.Point(3, 3)
-        Me.btnPridat.Name = "btnPridat"
-        Me.btnPridat.Size = New System.Drawing.Size(75, 23)
-        Me.btnPridat.TabIndex = 1
-        Me.btnPridat.Text = "Pridať"
-        Me.btnPridat.UseVisualStyleBackColor = True
-        '
-        'btnVymazat
-        '
-        Me.btnVymazat.Location = New System.Drawing.Point(165, 3)
-        Me.btnVymazat.Name = "btnVymazat"
-        Me.btnVymazat.Size = New System.Drawing.Size(75, 23)
-        Me.btnVymazat.TabIndex = 2
-        Me.btnVymazat.Text = "Vymazať"
-        Me.btnVymazat.UseVisualStyleBackColor = True
-        '
-        'txtNazov
-        '
-        Me.txtNazov.Location = New System.Drawing.Point(55, 3)
-        Me.txtNazov.Name = "txtNazov"
-        Me.txtNazov.ReadOnly = True
-        Me.txtNazov.Size = New System.Drawing.Size(124, 22)
-        Me.txtNazov.TabIndex = 1
-        '
-        'txtKod
-        '
-        Me.txtKod.Enabled = False
-        Me.txtKod.Location = New System.Drawing.Point(40, 31)
-        Me.txtKod.Name = "txtKod"
-        Me.txtKod.ReadOnly = True
-        Me.txtKod.Size = New System.Drawing.Size(139, 22)
-        Me.txtKod.TabIndex = 3
-        '
         'Label1
         '
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Left
@@ -158,6 +141,14 @@ Partial Class FrmOrganizacnaStruktura
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Názov"
         '
+        'txtNazov
+        '
+        Me.txtNazov.Location = New System.Drawing.Point(55, 3)
+        Me.txtNazov.Name = "txtNazov"
+        Me.txtNazov.ReadOnly = True
+        Me.txtNazov.Size = New System.Drawing.Size(124, 22)
+        Me.txtNazov.TabIndex = 1
+        '
         'Label2
         '
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Left
@@ -167,6 +158,15 @@ Partial Class FrmOrganizacnaStruktura
         Me.Label2.Size = New System.Drawing.Size(31, 16)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Kód"
+        '
+        'txtKod
+        '
+        Me.txtKod.Enabled = False
+        Me.txtKod.Location = New System.Drawing.Point(40, 31)
+        Me.txtKod.Name = "txtKod"
+        Me.txtKod.ReadOnly = True
+        Me.txtKod.Size = New System.Drawing.Size(139, 22)
+        Me.txtKod.TabIndex = 3
         '
         'Label3
         '

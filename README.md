@@ -4,21 +4,21 @@ WinForms aplikácia vo VB.NET pre správu organizačnej štruktúry firmy a zame
 
 ## Poznámky 
 
-Použil som prevažne slovenské názvy tried, metód a niektorých premenných. Takto to riešime v súčastnej práci.
-Kedže u nás používame prevažne MySQL, trochu som bojoval s MS SQL Serverom.
+Použil som prevažne slovenské názvy tried, metód a niektorých premenných.
+Kedže v práci používame prevažne MySQL, trochu som bojoval s MS SQL Serverom.
 V SSMS mi nešlo spustiť naraz všetky SQL príkazy v jednom skripte aj ked medzi nimi bol príkaz GO, tak som skript rozdelil do dvoch častí. Viď nižšie.
 Nakoľko ide o malý projekt, neriešim tu indexy - len tabuľky a ich väzby.
 Z rovnakého dôvodu som nepoužil ORM a LINQ, len čistý ADO.NET.
 Niektoré polia som možno predimenzoval (napr. titul alebo kód), chápem že v realite by ich velkosť závisela od zadania (požiadaviek).
 Nebol som si úplne istý čo sa bude zapisovať do poľa "Kod", tak som ho pre istotu nastavil ako String.
-V práci používame DevExpress komponenty, tu som použil len základné WinForms, UI je funkčné ale v realite by som určite venoval viac času dizajnu :)
+V práci používame DevExpress komponenty, tu som použil len základné WinForms, UI je funkčné ale v reále by som určite venoval viac času dizajnu :)
 Dátové triedy dedia z jednej spoločnej triedy `ZakladnyCRUD.vb`. 
 
 ## Nastavenie pripojenia
 
 V súbore `App.config` uprav pripojovací reťazec `OrganizacnaStruktura` podľa svojho SQL Servera.
 
-### SQL skript 1 - vytvorenie databázy (MS SQL Server)
+### SQL skript 1 - vytvorenie databázy
 
 ```
 CREATE DATABASE OrganizacnaStruktura;
