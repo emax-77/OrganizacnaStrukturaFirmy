@@ -81,17 +81,32 @@
     <Compile Include="Data\SqlPripojenie.vb" />
     <Compile Include="Data\ZakladnyCRUD.vb" />
     <Compile Include="Data\ZamestnanecCRUD.vb" />
+    <Compile Include="Formulare\FrmHlavne.Designer.vb">
+      <DependentUpon>FrmHlavne.vb</DependentUpon>
+    </Compile>
     <Compile Include="Formulare\FrmHlavne.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulare\FrmOrganizacnaStruktura.Designer.vb">
+      <DependentUpon>FrmOrganizacnaStruktura.vb</DependentUpon>
     </Compile>
     <Compile Include="Formulare\FrmOrganizacnaStruktura.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formulare\FrmUpravaUzla.Designer.vb">
+      <DependentUpon>FrmUpravaUzla.vb</DependentUpon>
+    </Compile>
     <Compile Include="Formulare\FrmUpravaUzla.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formulare\FrmUpravaZamestnanca.Designer.vb">
+      <DependentUpon>FrmUpravaZamestnanca.vb</DependentUpon>
+    </Compile>
     <Compile Include="Formulare\FrmUpravaZamestnanca.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulare\FrmZamestnanci.Designer.vb">
+      <DependentUpon>FrmZamestnanci.vb</DependentUpon>
     </Compile>
     <Compile Include="Formulare\FrmZamestnanci.vb">
       <SubType>Form</SubType>
