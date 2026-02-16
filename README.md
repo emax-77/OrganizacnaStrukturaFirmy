@@ -1,13 +1,32 @@
 # Organizačná štruktúra firmy
 
-WinForms aplikácia vo VB.NET (.NET Framework 4.8) pre správu organizačnej štruktúry firmy a zamestnancov.
+WinForms aplikácia vo VB.NET pre správu organizačnej štruktúry firmy a zamestnancov.
 
-## SQL skript pre vytvorenie databázy (MS SQL Server)
+## Poznámky 
 
-```sql
+Použil som prevažne slovenské názvy tried, metód a niektorých premenných. Takto to riešime v súčastnej práci.
+Kedže u nás používame prevažne MySQL, trochu som bojoval s MS SQL Serverom.
+V SSMS mi nešlo spustiť naraz všetky SQL príkazy v jednom skripte aj ked medzi nimi bol príkaz GO, tak som skript rozdelil do dvoch častí. Viď nižšie.
+Nakoľko ide o malý projekt, neriešim tu indexy - len tabuľky a ich väzby.
+Z rovnakého dôvodu som nepoužil ORM a LINQ, len čistý ADO.NET.
+Niektoré polia som možno predimenzoval (napr. titul alebo kód), chápem že v realite by ich velkosť závisela od zadania (požiadaviek).
+Nebol som si úplne istý čo sa bude zapisovať do poľa "Kod", tak som ho pre istotu nastavil ako String.
+V práci používame DevExpress komponenty, tu som použil len základné WinForms, UI je funkčné ale v realite by som určite venoval viac času dizajnu :)
+Dátové triedy dedia z jednej spoločnej triedy `ZakladnyCRUD.vb`. 
+
+## Nastavenie pripojenia
+
+V súbore `App.config` uprav pripojovací reťazec `OrganizacnaStruktura` podľa svojho SQL Servera.
+
+### SQL skript 1 - vytvorenie databázy (MS SQL Server)
+
+```
 CREATE DATABASE OrganizacnaStruktura;
-GO
+```
 
+### SQL skript 2  - vytvorenie tabuliek
+
+```
 USE OrganizacnaStruktura;
 GO
 
@@ -18,9 +37,11 @@ CREATE TABLE Zamestnanec (
     Priezvisko NVARCHAR(100) NOT NULL,
     Telefon NVARCHAR(20) NULL,
     Email NVARCHAR(200) NULL,
-    OddelenieId INT NOT NULL
+    Zaradenie NVARCHAR(100) NOT NULL,
+    ZaradenieId INT NOT NULL,
+    UzolTyp NVARCHAR(50) NOT NULL,
+    UzolId INT NOT NULL
 );
-GO
 
 CREATE TABLE Firma (
     Id INT IDENTITY(1,1) PRIMARY KEY,
@@ -28,7 +49,6 @@ CREATE TABLE Firma (
     Kod NVARCHAR(50) NOT NULL,
     RiaditelId INT NULL
 );
-GO
 
 CREATE TABLE Divizia (
     Id INT IDENTITY(1,1) PRIMARY KEY,
@@ -37,7 +57,6 @@ CREATE TABLE Divizia (
     Kod NVARCHAR(50) NOT NULL,
     VeduciDivizieId INT NULL
 );
-GO
 
 CREATE TABLE Projekt (
     Id INT IDENTITY(1,1) PRIMARY KEY,
@@ -46,7 +65,6 @@ CREATE TABLE Projekt (
     Kod NVARCHAR(50) NOT NULL,
     VeduciProjektuId INT NULL
 );
-GO
 
 CREATE TABLE Oddelenie (
     Id INT IDENTITY(1,1) PRIMARY KEY,
@@ -55,55 +73,32 @@ CREATE TABLE Oddelenie (
     Kod NVARCHAR(50) NOT NULL,
     VeduciOddeleniaId INT NULL
 );
-GO
 
 ALTER TABLE Divizia
 ADD CONSTRAINT FK_Divizia_Firma
 FOREIGN KEY (FirmaId) REFERENCES Firma(Id);
-GO
 
 ALTER TABLE Projekt
 ADD CONSTRAINT FK_Projekt_Divizia
 FOREIGN KEY (DiviziaId) REFERENCES Divizia(Id);
-GO
 
 ALTER TABLE Oddelenie
 ADD CONSTRAINT FK_Oddelenie_Projekt
 FOREIGN KEY (ProjektId) REFERENCES Projekt(Id);
-GO
-
-ALTER TABLE Zamestnanec
-ADD CONSTRAINT FK_Zamestnanec_Oddelenie
-FOREIGN KEY (OddelenieId) REFERENCES Oddelenie(Id);
-GO
 
 ALTER TABLE Firma
 ADD CONSTRAINT FK_Firma_Riaditel
 FOREIGN KEY (RiaditelId) REFERENCES Zamestnanec(Id);
-GO
 
 ALTER TABLE Divizia
 ADD CONSTRAINT FK_Divizia_Veduci
 FOREIGN KEY (VeduciDivizieId) REFERENCES Zamestnanec(Id);
-GO
 
 ALTER TABLE Projekt
 ADD CONSTRAINT FK_Projekt_Veduci
 FOREIGN KEY (VeduciProjektuId) REFERENCES Zamestnanec(Id);
-GO
 
 ALTER TABLE Oddelenie
 ADD CONSTRAINT FK_Oddelenie_Veduci
 FOREIGN KEY (VeduciOddeleniaId) REFERENCES Zamestnanec(Id);
-GO
-
-CREATE INDEX IX_Divizia_FirmaId ON Divizia(FirmaId);
-CREATE INDEX IX_Projekt_DiviziaId ON Projekt(DiviziaId);
-CREATE INDEX IX_Oddelenie_ProjektId ON Oddelenie(ProjektId);
-CREATE INDEX IX_Zamestnanec_OddelenieId ON Zamestnanec(OddelenieId);
-GO
 ```
-
-## Nastavenie pripojenia
-
-V súbore `App.config` uprav pripojovací reťazec `OrganizacnaStruktura` podľa svojho SQL Servera.

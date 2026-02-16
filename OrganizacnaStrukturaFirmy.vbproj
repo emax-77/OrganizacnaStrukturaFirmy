@@ -49,6 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -120,6 +121,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formulare\FrmHlavne.resx">
+      <DependentUpon>FrmHlavne.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulare\FrmOrganizacnaStruktura.resx">
+      <DependentUpon>FrmOrganizacnaStruktura.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulare\FrmUpravaUzla.resx">
+      <DependentUpon>FrmUpravaUzla.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulare\FrmUpravaZamestnanca.resx">
+      <DependentUpon>FrmUpravaZamestnanca.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulare\FrmZamestnanci.resx">
+      <DependentUpon>FrmZamestnanci.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -128,7 +144,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".github\copilot-instructions.md" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -140,6 +155,9 @@
     </None>
     <None Include="App.config" />
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".github\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

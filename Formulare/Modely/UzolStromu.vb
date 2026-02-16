@@ -4,4 +4,5 @@ Public Class UzolStromu
     Public Property Nazov As String
     Public Property Kod As String
     Public Property Typ As String
+    Public Property Popis As String
 End Class

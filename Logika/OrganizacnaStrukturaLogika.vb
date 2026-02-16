@@ -10,4 +10,206 @@ Public Class OrganizacnaStrukturaLogika
         _projektCrud = projektCrud
         _oddelenieCrud = oddelenieCrud
     End Sub
+
+    Public Function ZiskajFirmu() As mFirma
+        Return _firmaCrud.ZiskajFirmu()
+    End Function
+
+    Public Function UlozFirmu(firma As mFirma) As Integer
+        Return _firmaCrud.UlozFirmu(firma)
+    End Function
+
+    Public Sub AktualizujFirmu(firma As mFirma)
+        _firmaCrud.AktualizujFirmu(firma)
+    End Sub
+
+    Public Sub VymazFirmu(id As Integer)
+        _firmaCrud.VymazFirmu(id)
+    End Sub
+
+    Public Function ZiskajDivizie(firmaId As Integer) As List(Of mDivizia)
+        Return _diviziaCrud.ZiskajDiviziePodlaFirmy(firmaId)
+    End Function
+
+    Public Function UlozDiviziu(divizia As mDivizia) As Integer
+        Return _diviziaCrud.UlozDiviziu(divizia)
+    End Function
+
+    Public Sub AktualizujDiviziu(divizia As mDivizia)
+        _diviziaCrud.AktualizujDiviziu(divizia)
+    End Sub
+
+    Public Sub VymazDiviziu(id As Integer)
+        _diviziaCrud.VymazDiviziu(id)
+    End Sub
+
+    Public Function ZiskajProjekty(diviziaId As Integer) As List(Of mProjekt)
+        Return _projektCrud.ZiskajProjektyPodlaDivizie(diviziaId)
+    End Function
+
+    Public Function UlozProjekt(projekt As mProjekt) As Integer
+        Return _projektCrud.UlozProjekt(projekt)
+    End Function
+
+    Public Sub AktualizujProjekt(projekt As mProjekt)
+        _projektCrud.AktualizujProjekt(projekt)
+    End Sub
+
+    Public Sub VymazProjekt(id As Integer)
+        _projektCrud.VymazProjekt(id)
+    End Sub
+
+    Public Function ZiskajOddelenia(projektId As Integer) As List(Of mOddelenie)
+        Return _oddelenieCrud.ZiskajOddeleniaPodlaProjektu(projektId)
+    End Function
+
+    Public Function ZiskajZaradenia() As List(Of UzolStromu)
+        Dim vysledok As New List(Of UzolStromu)
+
+        vysledok.Add(New UzolStromu With {
+            .Id = 0,
+            .Nazov = "Zamestnanec",
+            .Kod = String.Empty,
+            .Typ = "Zamestnanec",
+            .Popis = "Zamestnanec"
+        })
+
+        Dim firma = _firmaCrud.ZiskajFirmu()
+        If firma Is Nothing Then
+            Return vysledok
+        End If
+
+        vysledok.Add(New UzolStromu With {
+            .Id = firma.Id,
+            .Nazov = firma.Nazov,
+            .Kod = firma.Kod,
+            .Typ = "Firma",
+            .Popis = $"Riaditeľ: {firma.Nazov} ({firma.Kod})"
+        })
+
+        Dim divizie = _diviziaCrud.ZiskajDiviziePodlaFirmy(firma.Id)
+        For Each divizia In divizie
+            vysledok.Add(New UzolStromu With {
+                .Id = divizia.Id,
+                .RodicId = divizia.FirmaId,
+                .Nazov = divizia.Nazov,
+                .Kod = divizia.Kod,
+                .Typ = "Divizia",
+                .Popis = $"Vedúci divízie: {divizia.Nazov} ({divizia.Kod})"
+            })
+
+            Dim projekty = _projektCrud.ZiskajProjektyPodlaDivizie(divizia.Id)
+            For Each projekt In projekty
+                vysledok.Add(New UzolStromu With {
+                    .Id = projekt.Id,
+                    .RodicId = projekt.DiviziaId,
+                    .Nazov = projekt.Nazov,
+                    .Kod = projekt.Kod,
+                    .Typ = "Projekt",
+                    .Popis = $"Vedúci projektu: {projekt.Nazov} ({projekt.Kod})"
+                })
+
+                Dim oddelenia = _oddelenieCrud.ZiskajOddeleniaPodlaProjektu(projekt.Id)
+                For Each oddelenie In oddelenia
+                    vysledok.Add(New UzolStromu With {
+                        .Id = oddelenie.Id,
+                        .RodicId = oddelenie.ProjektId,
+                        .Nazov = oddelenie.Nazov,
+                        .Kod = oddelenie.Kod,
+                        .Typ = "Oddelenie",
+                        .Popis = $"Vedúci oddelenia: {oddelenie.Nazov} ({oddelenie.Kod})"
+                    })
+                Next
+            Next
+        Next
+
+        Return vysledok
+    End Function
+
+    Public Function ZiskajUzly() As List(Of UzolStromu)
+        Dim vysledok As New List(Of UzolStromu)
+
+        Dim firma = _firmaCrud.ZiskajFirmu()
+        If firma Is Nothing Then
+            Return vysledok
+        End If
+
+        vysledok.Add(New UzolStromu With {
+            .Id = firma.Id,
+            .Nazov = firma.Nazov,
+            .Kod = firma.Kod,
+            .Typ = "Firma",
+            .Popis = $"Firma: {firma.Nazov} ({firma.Kod})"
+        })
+
+        Dim divizie = _diviziaCrud.ZiskajDiviziePodlaFirmy(firma.Id)
+        For Each divizia In divizie
+            vysledok.Add(New UzolStromu With {
+                .Id = divizia.Id,
+                .RodicId = divizia.FirmaId,
+                .Nazov = divizia.Nazov,
+                .Kod = divizia.Kod,
+                .Typ = "Divizia",
+                .Popis = $"Divízia: {divizia.Nazov} ({divizia.Kod})"
+            })
+
+            Dim projekty = _projektCrud.ZiskajProjektyPodlaDivizie(divizia.Id)
+            For Each projekt In projekty
+                vysledok.Add(New UzolStromu With {
+                    .Id = projekt.Id,
+                    .RodicId = projekt.DiviziaId,
+                    .Nazov = projekt.Nazov,
+                    .Kod = projekt.Kod,
+                    .Typ = "Projekt",
+                    .Popis = $"Projekt: {projekt.Nazov} ({projekt.Kod})"
+                })
+
+                Dim oddelenia = _oddelenieCrud.ZiskajOddeleniaPodlaProjektu(projekt.Id)
+                For Each oddelenie In oddelenia
+                    vysledok.Add(New UzolStromu With {
+                        .Id = oddelenie.Id,
+                        .RodicId = oddelenie.ProjektId,
+                        .Nazov = oddelenie.Nazov,
+                        .Kod = oddelenie.Kod,
+                        .Typ = "Oddelenie",
+                        .Popis = $"Oddelenie: {oddelenie.Nazov} ({oddelenie.Kod})"
+                    })
+                Next
+            Next
+        Next
+
+        Return vysledok
+    End Function
+
+    Public Function UlozOddelenie(oddelenie As mOddelenie) As Integer
+        Return _oddelenieCrud.UlozOddelenie(oddelenie)
+    End Function
+
+    Public Sub AktualizujOddelenie(oddelenie As mOddelenie)
+        _oddelenieCrud.AktualizujOddelenie(oddelenie)
+    End Sub
+
+    Public Sub VymazOddelenie(id As Integer)
+        _oddelenieCrud.VymazOddelenie(id)
+    End Sub
+
+    Public Sub NastavVeduciPodlaZaradenia(zaradenie As String, uzolId As Integer, zamestnanecId As Integer)
+        If String.IsNullOrWhiteSpace(zaradenie) Then
+            Return
+        End If
+
+        If String.Equals(zaradenie, "Zamestnanec", StringComparison.OrdinalIgnoreCase) Then
+            Return
+        End If
+
+        If zaradenie.StartsWith("Riaditeľ", StringComparison.OrdinalIgnoreCase) Then
+            _firmaCrud.NastavRiaditela(uzolId, zamestnanecId)
+        ElseIf zaradenie.StartsWith("Vedúci divízie", StringComparison.OrdinalIgnoreCase) Then
+            _diviziaCrud.NastavVeduciDivizie(uzolId, zamestnanecId)
+        ElseIf zaradenie.StartsWith("Vedúci projektu", StringComparison.OrdinalIgnoreCase) Then
+            _projektCrud.NastavVeduciProjektu(uzolId, zamestnanecId)
+        ElseIf zaradenie.StartsWith("Vedúci oddelenia", StringComparison.OrdinalIgnoreCase) Then
+            _oddelenieCrud.NastavVeduciOddelenia(uzolId, zamestnanecId)
+        End If
+    End Sub
 End Class

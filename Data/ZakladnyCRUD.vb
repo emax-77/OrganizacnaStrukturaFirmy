@@ -1,14 +1,14 @@
 Imports System.Data.SqlClient
 
 Public MustInherit Class ZakladnyCRUD
-    Protected ReadOnly PripojovaciRetazec As String
+    Protected ReadOnly ConnectionString As String
 
-    Protected Sub New(pripojovaciRetazec As String)
-        Me.PripojovaciRetazec = pripojovaciRetazec
+    Protected Sub New(connectionString As String)
+        Me.ConnectionString = connectionString
     End Sub
 
     Protected Function VytvorSpojenie() As SqlConnection
-        Return New SqlConnection(PripojovaciRetazec)
+        Return New SqlConnection(ConnectionString)
     End Function
 
     Protected Sub PridajParameter(prikaz As SqlCommand, nazov As String, hodnota As Object)
