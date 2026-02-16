@@ -2,17 +2,24 @@
 
 WinForms aplikácia vo VB.NET pre správu organizačnej štruktúry firmy a zamestnancov.
 
-## Poznámky 
+## Všeobecné poznámky 
 
 Použil som prevažne slovenské názvy tried, metód a niektorých premenných.
 Kedže v práci používame prevažne MySQL, trochu som bojoval s MS SQL Serverom.
-V SSMS mi nešlo spustiť naraz všetky SQL príkazy v jednom skripte aj ked medzi nimi bol príkaz GO, tak som skript rozdelil do dvoch častí. Viď nižšie.
+V SSMS mi nešlo spustiť naraz všetky SQL príkazy v jednom skripte aj ked medzi nimi bol príkaz GO - tak som skript rozdelil do dvoch častí. Viď nižšie.
 Nakoľko ide o malý projekt, neriešim tu indexy - len tabuľky a ich väzby.
-Z rovnakého dôvodu som nepoužil ORM a LINQ, len čistý ADO.NET.
+Z rovnakého dôvodu sa nepoužíva ORM a LINQ, len čistý ADO.NET.
 Niektoré polia som možno predimenzoval (napr. titul alebo kód), chápem že v realite by ich velkosť závisela od zadania (požiadaviek).
-Nebol som si úplne istý čo sa bude zapisovať do poľa "Kod", tak som ho pre istotu nastavil ako String.
-V práci používame DevExpress komponenty, tu som použil len základné WinForms, UI je funkčné ale v reále by som určite venoval viac času dizajnu :)
+Nebol som si úplne istý čo sa bude zapisovať do poľa "Kod", tak som ho nastavil ako String.
+V práci používame DevExpress komponenty, tu som použil len základné WinForms, UI je funkčné ale velmi jednoduché.
+Základné validácie sú implementované, v reálnom projekte by som ich rozšíril o kontrolu formátu emailu, telefónneho čísla,...
+Je tu naviac možnosť editovať vlastné názvy všetkých uzlov a ich kódov.
+
+## Poznámky k dátovým triedam
+
 Dátové triedy dedia z jednej spoločnej triedy `ZakladnyCRUD.vb`. 
+UzolTyp určuje typ uzla, ku ktorému je zamestnanec priradený: Firma, Divizia, Projekt alebo Oddelenie. 
+ZaradenieId je ID uzla, ku ktorému sa viaže zvolené Zaradenie (Riaditeľ/Vedúci divízie/Vedúci projektu/Vedúci oddelenia).
 
 ## Nastavenie pripojenia
 
@@ -102,3 +109,5 @@ ALTER TABLE Oddelenie
 ADD CONSTRAINT FK_Oddelenie_Veduci
 FOREIGN KEY (VeduciOddeleniaId) REFERENCES Zamestnanec(Id);
 ```
+
+
