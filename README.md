@@ -4,7 +4,7 @@ WinForms aplikácia vo VB.NET pre správu organizačnej štruktúry firmy a zame
 
 ## Všeobecné poznámky 
 
-Použil som prevažne slovenské názvy tried, metód a niektorých premenných.
+Použil som slovenské názvy tried, metód a niektorých premenných.
 V práci používame prevažne MySQL, trochu som bojoval s MS SQL Serverom.
 V SSMS mi nešlo spustiť naraz všetky SQL príkazy v jednom skripte aj ked medzi nimi bol príkaz GO - tak som skript rozdelil do dvoch častí. Viď nižšie.
 Nakoľko ide o malý projekt, neriešim tu indexy - len tabuľky a ich väzby.
