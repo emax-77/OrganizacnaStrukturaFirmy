@@ -6,14 +6,14 @@ WinForms aplikácia vo VB.NET pre správu organizačnej štruktúry firmy a zame
 
 Použil som slovenské názvy tried, metód a niektorých premenných.
 V práci používame prevažne MySQL, trochu som bojoval s MS SQL Serverom.
-V SSMS mi nešlo spustiť naraz všetky SQL príkazy v jednom skripte aj ked medzi nimi bol príkaz GO - tak som skript rozdelil do dvoch častí. Viď nižšie.
-Nakoľko ide o malý projekt, neriešim tu indexy - len tabuľky a ich väzby.
+V SSMS mi nešlo spustiť naraz všetky SQL príkazy v jednom skripte, aj keď medzi nimi bol príkaz GO – tak som skript rozdelil do dvoch častí. Viď nižšie.
+Nakoľko ide o malý projekt, neriešim tu indexy – len tabuľky a ich väzby.
 Z rovnakého dôvodu sa nepoužíva ORM a LINQ, len čistý ADO.NET.
-Niektoré polia som možno predimenzoval (napr. titul alebo kód), chápem že v realite by ich velkosť závisela od zadania (požiadaviek).
-Nebol som si úplne istý čo sa bude zapisovať do poľa "Kod", tak som ho nastavil ako String.
-V práci používame DevExpress komponenty, tu som použil len základné WinForms, UI je funkčné ale velmi jednoduché.
+Niektoré polia som možno predimenzoval (napr. titul alebo kód). Chápem, že v realite by ich veľkosť závisela od zadania (požiadaviek).
+Nebol som si úplne istý, čo sa bude zapisovať do poľa "Kód", tak som ho nastavil ako String.
+V práci používame DevExpress komponenty. Tu som použil len základné WinForms. UI je funkčné, ale veľmi jednoduché.
 Základné validácie sú implementované, v reálnom projekte by som ich rozšíril o kontrolu formátu emailu, telefónneho čísla, atď.
-Je tu naviac možnosť editovať vlastné názvy všetkých uzlov a ich kódov.
+Je tu naviac možnosť editovať vlastné názvy všetkých uzlov a ich kódy.
 Veľmi podobný (môj) VB.NET projekt z roku 2024 s názvom "Knižnica" kde je použitý TreeView a všetky základné CRUD operácie s čitateľmi, knihami a pôžičkami mám na GitHub-e: https://github.com/emax-77/Kniznica-VB.NET
 
 ## Poznámky k dátovým triedam
@@ -110,5 +110,11 @@ ALTER TABLE Oddelenie
 ADD CONSTRAINT FK_Oddelenie_Veduci
 FOREIGN KEY (VeduciOddeleniaId) REFERENCES Zamestnanec(Id);
 ```
+
+## Obrázky
+
+<img width="1117" height="424" alt="image" src="https://github.com/user-attachments/assets/b86b3810-d0df-4396-a2e9-2b5ab88b8854" />
+<img width="1113" height="415" alt="image" src="https://github.com/user-attachments/assets/79f89e4a-39de-4bc7-9270-7118eee3c26d" />
+
 
 
