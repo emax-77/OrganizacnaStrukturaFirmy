@@ -78,15 +78,16 @@ Partial Public Class FrmUpravaZamestnanca
 
         Zamestnanec = New mZamestnanec With {
             .Id = If(_zamestnanecId.HasValue, _zamestnanecId.Value, 0),
-            .Titul = txtTitul.Text,
-            .Meno = txtMeno.Text,
-            .Priezvisko = txtPriezvisko.Text,
-            .Telefon = txtTelefon.Text,
-            .Email = txtEmail.Text,
+            .Titul = txtTitul.Text.Trim(),
+            .Meno = txtMeno.Text.Trim(),
+            .Priezvisko = txtPriezvisko.Text.Trim(),
+            .Telefon = txtTelefon.Text.Trim(),
+            .Email = txtEmail.Text.Trim(),
             .ZaradenieId = vybraneZaradenie.Id,
             .Zaradenie = vybraneZaradenie.Popis,
+            .ZaradenieTyp = vybraneZaradenie.Typ,
             .UzolId = vybranyUzol.Id,
-            .UzolTyp = vybranyUzol.Typ
+            .UzolTyp = vybranyUzol.Typ.Value
         }
 
         DialogResult = DialogResult.OK

@@ -22,4 +22,13 @@ Public MustInherit Class ZakladnyCRUD
         End If
         Return Nothing
     End Function
+
+    Protected Function ParseZaradenieTyp(zaradenie As String) As TypUzla?
+        If String.IsNullOrEmpty(zaradenie) Then Return Nothing
+        If zaradenie.StartsWith("Riaditeľ", StringComparison.OrdinalIgnoreCase) Then Return TypUzla.Firma
+        If zaradenie.StartsWith("Vedúci divízie", StringComparison.OrdinalIgnoreCase) Then Return TypUzla.Divizia
+        If zaradenie.StartsWith("Vedúci projektu", StringComparison.OrdinalIgnoreCase) Then Return TypUzla.Projekt
+        If zaradenie.StartsWith("Vedúci oddelenia", StringComparison.OrdinalIgnoreCase) Then Return TypUzla.Oddelenie
+        Return Nothing
+    End Function
 End Class

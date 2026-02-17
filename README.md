@@ -14,12 +14,13 @@ Nebol som si úplne istý, čo sa bude zapisovať do poľa "Kód", tak som ho na
 Pre UI som použil len základné WinForms. Je funkčné, ale dosť jednoduché.
 Základné validácie sú implementované, v reálnom projekte by som zrejme riešil aj kontrolu formátu telefónneho čísla, jeho duplicitu atď.
 Je tu naviac možnosť editovať vlastné názvy všetkých uzlov a ich kódy.
-Veľmi podobný VB.NET projekt z roku 2024 s názvom "Knižnica" kde je použitý TreeView a všetky základné CRUD operácie s čitateľmi, knihami a pôžičkami mám na GitHub-e: https://github.com/emax-77/Kniznica-VB.NET
 
 ## Poznámky k dátovým triedam
 
 Dátové triedy dedia z jednej spoločnej triedy `ZakladnyCRUD.vb`. 
-ZaradenieId je ID uzla, ku ktorému sa viaže zvolené Zaradenie (Riaditeľ/Vedúci divízie/Vedúci projektu/Vedúci oddelenia).
+Typ uzla organizačnej štruktúry je Enum `TypUzla` (Firma, Divizia, Projekt, Oddelenie).
+`ZaradenieId` je ID uzla, ku ktorému sa viaže zvolené Zaradenie (Riaditeľ/Vedúci divízie/Vedúci projektu/Vedúci oddelenia).
+`ZaradenieTyp` určuje typ vedúcej funkcie – bežný zamestnanec (bez vedúcej funkcie) má `ZaradenieTyp = Nothing`.
 
 ## Nastavenie pripojenia
 
@@ -114,6 +115,4 @@ FOREIGN KEY (VeduciOddeleniaId) REFERENCES Zamestnanec(Id);
 
 <img width="1117" height="424" alt="image" src="https://github.com/user-attachments/assets/b86b3810-d0df-4396-a2e9-2b5ab88b8854" />
 <img width="1113" height="415" alt="image" src="https://github.com/user-attachments/assets/79f89e4a-39de-4bc7-9270-7118eee3c26d" />
-
-
 

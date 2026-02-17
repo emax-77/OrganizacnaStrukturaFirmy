@@ -74,5 +74,4 @@ Partial Public Class FrmZamestnanci
         End If
     End Sub
 
-
 End Class

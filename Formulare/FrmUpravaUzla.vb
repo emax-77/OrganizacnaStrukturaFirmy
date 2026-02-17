@@ -17,8 +17,8 @@ Partial Public Class FrmUpravaUzla
             Return
         End If
 
-        UzolNazov = txtNazov.Text
-        UzolKod = txtKod.Text
+        UzolNazov = txtNazov.Text.Trim()
+        UzolKod = txtKod.Text.Trim()
         DialogResult = DialogResult.OK
         Close()
     End Sub

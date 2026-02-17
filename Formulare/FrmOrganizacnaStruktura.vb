@@ -12,8 +12,6 @@ Partial Public Class FrmOrganizacnaStruktura
         _zamestnanecCrud = New ZamestnanecCRUD(pripojenie)
     End Sub
 
-
-
     Private Sub FrmOrganizacnaStruktura_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         hlavnySplit.Panel1MinSize = 250
         hlavnySplit.Panel2MinSize = 300

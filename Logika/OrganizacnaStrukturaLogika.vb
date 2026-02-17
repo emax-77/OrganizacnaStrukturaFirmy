@@ -136,7 +136,7 @@ Public Class OrganizacnaStrukturaLogika
         _oddelenieCrud.VymazOddelenie(id)
     End Sub
 
-    Public Sub NastavVeduciPodlaZaradenia(zaradenie As String, uzolTyp As TypUzla?, uzolId As Integer, zamestnanecId As Integer)
+    Public Sub NastavVeduciPodlaZaradenia(uzolTyp As TypUzla?, uzolId As Integer, zamestnanecId As Integer)
         If Not uzolTyp.HasValue Then
             Return
         End If
