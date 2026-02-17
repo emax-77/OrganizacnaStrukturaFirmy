@@ -63,13 +63,13 @@ Public Class OrganizacnaStrukturaLogika
         Return _oddelenieCrud.ZiskajOddeleniaPodlaProjektu(projektId)
     End Function
 
-    Private Function ZiskajVsetkyUzly(typPopisu As String) As List(Of UzolStromu)
-        Dim vysledok As New List(Of UzolStromu)
+    Private Function ZiskajVsetkyUzly(typPopisu As String) As List(Of mUzolStromu)
+        Dim vysledok As New List(Of mUzolStromu)
 
         Dim firma = _firmaCrud.ZiskajFirmu()
         If firma Is Nothing Then Return vysledok
 
-        vysledok.Add(New UzolStromu With {
+        vysledok.Add(New mUzolStromu With {
             .Id = firma.Id,
             .Nazov = firma.Nazov,
             .Kod = firma.Kod,
@@ -80,7 +80,7 @@ Public Class OrganizacnaStrukturaLogika
         })
 
         For Each divizia In _diviziaCrud.ZiskajDiviziePodlaFirmy(firma.Id)
-            vysledok.Add(New UzolStromu With {
+            vysledok.Add(New mUzolStromu With {
                 .Id = divizia.Id, .RodicId = divizia.FirmaId,
                 .Nazov = divizia.Nazov, .Kod = divizia.Kod, .Typ = "Divizia",
                 .Popis = If(typPopisu = "zaradenie",
@@ -88,7 +88,7 @@ Public Class OrganizacnaStrukturaLogika
                             $"Divízia: {divizia.Nazov} ({divizia.Kod})")
             })
             For Each projekt In _projektCrud.ZiskajProjektyPodlaDivizie(divizia.Id)
-                vysledok.Add(New UzolStromu With {
+                vysledok.Add(New mUzolStromu With {
                     .Id = projekt.Id, .RodicId = projekt.DiviziaId,
                     .Nazov = projekt.Nazov, .Kod = projekt.Kod, .Typ = "Projekt",
                     .Popis = If(typPopisu = "zaradenie",
@@ -96,7 +96,7 @@ Public Class OrganizacnaStrukturaLogika
                                 $"Projekt: {projekt.Nazov} ({projekt.Kod})")
                 })
                 For Each oddelenie In _oddelenieCrud.ZiskajOddeleniaPodlaProjektu(projekt.Id)
-                    vysledok.Add(New UzolStromu With {
+                    vysledok.Add(New mUzolStromu With {
                         .Id = oddelenie.Id, .RodicId = oddelenie.ProjektId,
                         .Nazov = oddelenie.Nazov, .Kod = oddelenie.Kod, .Typ = "Oddelenie",
                         .Popis = If(typPopisu = "zaradenie",
@@ -110,9 +110,9 @@ Public Class OrganizacnaStrukturaLogika
         Return vysledok
     End Function
 
-    Public Function ZiskajZaradenia() As List(Of UzolStromu)
-        Dim vysledok = New List(Of UzolStromu)
-        vysledok.Add(New UzolStromu With {
+    Public Function ZiskajZaradenia() As List(Of mUzolStromu)
+        Dim vysledok = New List(Of mUzolStromu)
+        vysledok.Add(New mUzolStromu With {
             .Id = 0, .Nazov = "Zamestnanec", .Kod = String.Empty,
             .Typ = "Zamestnanec", .Popis = "Zamestnanec"
         })
@@ -120,7 +120,7 @@ Public Class OrganizacnaStrukturaLogika
         Return vysledok
     End Function
 
-    Public Function ZiskajUzly() As List(Of UzolStromu)
+    Public Function ZiskajUzly() As List(Of mUzolStromu)
         Return ZiskajVsetkyUzly("uzol")
     End Function
 

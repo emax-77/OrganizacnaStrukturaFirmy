@@ -11,11 +11,11 @@ Public Class ZamestnanecLogika
         Return _zamestnanecCrud.ZiskajVsetkychZamestnancov()
     End Function
 
-    Public Function ZiskajZaradenia() As List(Of UzolStromu)
+    Public Function ZiskajZaradenia() As List(Of mUzolStromu)
         Return _strukturaLogika.ZiskajZaradenia()
     End Function
 
-    Public Function ZiskajUzly() As List(Of UzolStromu)
+    Public Function ZiskajUzly() As List(Of mUzolStromu)
         Return _strukturaLogika.ZiskajUzly()
     End Function
 

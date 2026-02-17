@@ -4,8 +4,8 @@ Partial Public Class FrmZamestnanci
     Inherits Form
 
     Private ReadOnly _logika As ZamestnanecLogika
-    Private _zaradenia As List(Of UzolStromu)
-    Private _uzly As List(Of UzolStromu)
+    Private _zaradenia As List(Of mUzolStromu)
+    Private _uzly As List(Of mUzolStromu)
 
     Public Sub New()
         InitializeComponent()

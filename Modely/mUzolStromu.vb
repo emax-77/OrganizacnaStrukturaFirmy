@@ -1,4 +1,4 @@
-Public Class UzolStromu
+Public Class mUzolStromu
     Public Property Id As Integer
     Public Property RodicId As Integer?
     Public Property Nazov As String

@@ -7,7 +7,7 @@ Partial Public Class FrmUpravaZamestnanca
 
     Public Property Zamestnanec As mZamestnanec
 
-    Public Sub New(zaradenia As List(Of UzolStromu), uzly As List(Of UzolStromu), logika As ZamestnanecLogika, Optional zamestnanec As mZamestnanec = Nothing)
+    Public Sub New(zaradenia As List(Of mUzolStromu), uzly As List(Of mUzolStromu), logika As ZamestnanecLogika, Optional zamestnanec As mZamestnanec = Nothing)
         InitializeComponent()
 
         _logika = logika
@@ -59,8 +59,8 @@ Partial Public Class FrmUpravaZamestnanca
             Return
         End If
 
-        Dim vybraneZaradenie = DirectCast(cmbZaradenie.SelectedItem, UzolStromu)
-        Dim vybranyUzol = DirectCast(cmbUzol.SelectedItem, UzolStromu)
+        Dim vybraneZaradenie = DirectCast(cmbZaradenie.SelectedItem, mUzolStromu)
+        Dim vybranyUzol = DirectCast(cmbUzol.SelectedItem, mUzolStromu)
 
         If Not String.Equals(vybraneZaradenie.Popis, "Zamestnanec", StringComparison.OrdinalIgnoreCase) Then
             Dim obsadene = _logika.ExistujeVeduci(vybraneZaradenie.Popis, vybraneZaradenie.Id, _zamestnanecId)
