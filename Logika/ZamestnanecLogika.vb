@@ -31,6 +31,10 @@ Public Class ZamestnanecLogika
     End Sub
 
     Public Sub VymazZamestnanca(id As Integer)
+        Dim zamestnanec = _zamestnanecCrud.ZiskajZamestnancaPodlaId(id)
+        If zamestnanec IsNot Nothing AndAlso Not String.Equals(zamestnanec.Zaradenie, "Zamestnanec", StringComparison.OrdinalIgnoreCase) Then
+            _strukturaLogika.ZrusVeduciPodlaZaradenia(zamestnanec.Zaradenie, zamestnanec.ZaradenieId)
+        End If
         _zamestnanecCrud.VymazZamestnanca(id)
     End Sub
 

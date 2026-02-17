@@ -212,4 +212,17 @@ Public Class OrganizacnaStrukturaLogika
             _oddelenieCrud.NastavVeduciOddelenia(uzolId, zamestnanecId)
         End If
     End Sub
+
+    Public Sub ZrusVeduciPodlaZaradenia(zaradenie As String, uzolId As Integer)
+        If zaradenie.StartsWith("Riaditeľ", StringComparison.OrdinalIgnoreCase) Then
+            _firmaCrud.NastavRiaditela(uzolId, Nothing)
+        ElseIf zaradenie.StartsWith("Vedúci divízie", StringComparison.OrdinalIgnoreCase) Then
+            _diviziaCrud.NastavVeduciDivizie(uzolId, Nothing)
+        ElseIf zaradenie.StartsWith("Vedúci projektu", StringComparison.OrdinalIgnoreCase) Then
+            _projektCrud.NastavVeduciProjektu(uzolId, Nothing)
+        ElseIf zaradenie.StartsWith("Vedúci oddelenia", StringComparison.OrdinalIgnoreCase) Then
+            _oddelenieCrud.NastavVeduciOddelenia(uzolId, Nothing)
+        End If
+    End Sub
+
 End Class
