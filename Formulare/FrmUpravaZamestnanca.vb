@@ -1,3 +1,4 @@
+Imports System.Text.RegularExpressions
 Imports System.Windows.Forms
 
 Partial Public Class FrmUpravaZamestnanca
@@ -46,6 +47,11 @@ Partial Public Class FrmUpravaZamestnanca
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         If String.IsNullOrWhiteSpace(txtMeno.Text) OrElse String.IsNullOrWhiteSpace(txtPriezvisko.Text) Then
             MessageBox.Show(Me, "Meno a priezvisko sú povinné.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        If Not String.IsNullOrWhiteSpace(txtEmail.Text) AndAlso Not Regex.IsMatch(txtEmail.Text.Trim(), "^[^@\s]+@[^@\s]+\.[^@\s]+$") Then
+            MessageBox.Show(Me, "Neplatný formát e-mailovej adresy.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
         End If
 

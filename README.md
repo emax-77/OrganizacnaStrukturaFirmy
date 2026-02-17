@@ -11,15 +11,14 @@ Nakoľko ide o malý projekt, neriešim tu indexy – len tabuľky a ich väzby.
 Z rovnakého dôvodu sa nepoužíva ORM a LINQ, len čistý ADO.NET.
 Niektoré polia som možno predimenzoval (napr. titul alebo kód). Chápem, že v realite by ich veľkosť závisela od zadania (požiadaviek).
 Nebol som si úplne istý, čo sa bude zapisovať do poľa "Kód", tak som ho nastavil ako String.
-V práci používame DevExpress komponenty. Tu som použil len základné WinForms. UI je funkčné, ale veľmi jednoduché.
-Základné validácie sú implementované, v reálnom projekte by som ich rozšíril o kontrolu formátu emailu, telefónneho čísla, atď.
+Pre UI som použil len základné WinForms. Je funkčné, ale dosť jednoduché.
+Základné validácie sú implementované, v reálnom projekte by som zrejme riešil aj kontrolu formátu telefónneho čísla, jeho duplicitu atď.
 Je tu naviac možnosť editovať vlastné názvy všetkých uzlov a ich kódy.
-Veľmi podobný (môj) VB.NET projekt z roku 2024 s názvom "Knižnica" kde je použitý TreeView a všetky základné CRUD operácie s čitateľmi, knihami a pôžičkami mám na GitHub-e: https://github.com/emax-77/Kniznica-VB.NET
+Veľmi podobný VB.NET projekt z roku 2024 s názvom "Knižnica" kde je použitý TreeView a všetky základné CRUD operácie s čitateľmi, knihami a pôžičkami mám na GitHub-e: https://github.com/emax-77/Kniznica-VB.NET
 
 ## Poznámky k dátovým triedam
 
 Dátové triedy dedia z jednej spoločnej triedy `ZakladnyCRUD.vb`. 
-UzolTyp určuje typ uzla, ku ktorému je zamestnanec priradený: Firma, Divizia, Projekt alebo Oddelenie. 
 ZaradenieId je ID uzla, ku ktorému sa viaže zvolené Zaradenie (Riaditeľ/Vedúci divízie/Vedúci projektu/Vedúci oddelenia).
 
 ## Nastavenie pripojenia
