@@ -7,28 +7,6 @@ Public Class OddelenieCRUD
         MyBase.New(connectionString)
     End Sub
 
-    Public Function ZiskajVsetkyOddelenia() As List(Of mOddelenie)
-        Dim vysledok As New List(Of mOddelenie)
-        Using spojenie = VytvorSpojenie()
-            Dim sql = "SELECT Id, ProjektId, Nazov, Kod, VeduciOddeleniaId FROM Oddelenie"
-            Using prikaz = New SqlCommand(sql, spojenie)
-                spojenie.Open()
-                Using reader = prikaz.ExecuteReader()
-                    While reader.Read()
-                        vysledok.Add(New mOddelenie With {
-                            .Id = reader.GetInt32(0),
-                            .ProjektId = reader.GetInt32(1),
-                            .Nazov = reader.GetString(2),
-                            .Kod = reader.GetString(3),
-                            .VeduciOddeleniaId = If(reader.IsDBNull(4), CType(Nothing, Integer?), reader.GetInt32(4))
-                        })
-                    End While
-                End Using
-            End Using
-        End Using
-        Return vysledok
-    End Function
-
     Public Function ZiskajOddeleniaPodlaProjektu(projektId As Integer) As List(Of mOddelenie)
         Dim vysledok As New List(Of mOddelenie)
         Using spojenie = VytvorSpojenie()

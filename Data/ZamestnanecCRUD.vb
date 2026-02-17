@@ -141,6 +141,18 @@ Public Class ZamestnanecCRUD
         End Using
     End Sub
 
+    Public Function MaUzolZamestnancov(uzolTyp As String, uzolId As Integer) As Boolean
+        Using spojenie = VytvorSpojenie()
+            Dim sql = "SELECT COUNT(1) FROM Zamestnanec WHERE UzolTyp=@UzolTyp AND UzolId=@UzolId"
+            Using prikaz = New SqlCommand(sql, spojenie)
+                PridajParameter(prikaz, "@UzolTyp", uzolTyp)
+                PridajParameter(prikaz, "@UzolId", uzolId)
+                spojenie.Open()
+                Return CInt(prikaz.ExecuteScalar()) > 0
+            End Using
+        End Using
+    End Function
+
     Public Function ExistujeVeduci(zaradenie As String, zaradenieId As Integer, okremId As Integer?) As Boolean
         Using spojenie = VytvorSpojenie()
             Dim sql = "SELECT COUNT(1) FROM Zamestnanec WHERE Zaradenie=@Zaradenie AND ZaradenieId=@ZaradenieId"

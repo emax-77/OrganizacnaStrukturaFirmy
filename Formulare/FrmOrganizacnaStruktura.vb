@@ -221,21 +221,43 @@ Partial Public Class FrmOrganizacnaStruktura
             Return
         End If
 
+        Dim tag = vybrany.Tag
+        Dim uzolTyp As String = Nothing
+        Dim uzolId As Integer = 0
+
+        If TypeOf tag Is mFirma Then
+            uzolTyp = "Firma"
+            uzolId = DirectCast(tag, mFirma).Id
+        ElseIf TypeOf tag Is mDivizia Then
+            uzolTyp = "Divizia"
+            uzolId = DirectCast(tag, mDivizia).Id
+        ElseIf TypeOf tag Is mProjekt Then
+            uzolTyp = "Projekt"
+            uzolId = DirectCast(tag, mProjekt).Id
+        ElseIf TypeOf tag Is mOddelenie Then
+            uzolTyp = "Oddelenie"
+            uzolId = DirectCast(tag, mOddelenie).Id
+        End If
+
+        If uzolTyp IsNot Nothing AndAlso _zamestnanecCrud.MaUzolZamestnancov(uzolTyp, uzolId) Then
+            MessageBox.Show(Me, "Uzol nie je možné vymazať, pretože obsahuje priradených zamestnancov.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         Dim potvrdenie = MessageBox.Show(Me, "Naozaj chcete vymazať vybraný uzol?", "Potvrdenie", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If potvrdenie <> DialogResult.Yes Then
             Return
         End If
 
         Try
-            Dim tag = vybrany.Tag
             If TypeOf tag Is mFirma Then
-                _logika.VymazFirmu(DirectCast(tag, mFirma).Id)
+                _logika.VymazFirmu(uzolId)
             ElseIf TypeOf tag Is mDivizia Then
-                _logika.VymazDiviziu(DirectCast(tag, mDivizia).Id)
+                _logika.VymazDiviziu(uzolId)
             ElseIf TypeOf tag Is mProjekt Then
-                _logika.VymazProjekt(DirectCast(tag, mProjekt).Id)
+                _logika.VymazProjekt(uzolId)
             ElseIf TypeOf tag Is mOddelenie Then
-                _logika.VymazOddelenie(DirectCast(tag, mOddelenie).Id)
+                _logika.VymazOddelenie(uzolId)
             End If
 
             NacitajStrom()
