@@ -21,19 +21,19 @@ Public Class ZamestnanecLogika
 
     Public Function UlozZamestnanca(zamestnanec As mZamestnanec) As Integer
         Dim id = _zamestnanecCrud.UlozZamestnanca(zamestnanec)
-        _strukturaLogika.NastavVeduciPodlaZaradenia(zamestnanec.Zaradenie, zamestnanec.ZaradenieId, id)
+        _strukturaLogika.NastavVeduciPodlaZaradenia(zamestnanec.Zaradenie, zamestnanec.UzolTyp, zamestnanec.ZaradenieId, id)
         Return id
     End Function
 
     Public Sub AktualizujZamestnanca(zamestnanec As mZamestnanec)
         _zamestnanecCrud.AktualizujZamestnanca(zamestnanec)
-        _strukturaLogika.NastavVeduciPodlaZaradenia(zamestnanec.Zaradenie, zamestnanec.ZaradenieId, zamestnanec.Id)
+        _strukturaLogika.NastavVeduciPodlaZaradenia(zamestnanec.Zaradenie, zamestnanec.UzolTyp, zamestnanec.ZaradenieId, zamestnanec.Id)
     End Sub
 
     Public Sub VymazZamestnanca(id As Integer)
         Dim zamestnanec = _zamestnanecCrud.ZiskajZamestnancaPodlaId(id)
-        If zamestnanec IsNot Nothing AndAlso Not String.Equals(zamestnanec.Zaradenie, "Zamestnanec", StringComparison.OrdinalIgnoreCase) Then
-            _strukturaLogika.ZrusVeduciPodlaZaradenia(zamestnanec.Zaradenie, zamestnanec.ZaradenieId)
+        If zamestnanec IsNot Nothing AndAlso zamestnanec.UzolTyp.HasValue Then
+            _strukturaLogika.ZrusVeduciPodlaZaradenia(zamestnanec.UzolTyp, zamestnanec.ZaradenieId)
         End If
         _zamestnanecCrud.VymazZamestnanca(id)
     End Sub

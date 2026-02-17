@@ -222,24 +222,24 @@ Partial Public Class FrmOrganizacnaStruktura
         End If
 
         Dim tag = vybrany.Tag
-        Dim uzolTyp As String = Nothing
+        Dim uzolTyp As TypUzla? = Nothing
         Dim uzolId As Integer = 0
 
         If TypeOf tag Is mFirma Then
-            uzolTyp = "Firma"
+            uzolTyp = TypUzla.Firma
             uzolId = DirectCast(tag, mFirma).Id
         ElseIf TypeOf tag Is mDivizia Then
-            uzolTyp = "Divizia"
+            uzolTyp = TypUzla.Divizia
             uzolId = DirectCast(tag, mDivizia).Id
         ElseIf TypeOf tag Is mProjekt Then
-            uzolTyp = "Projekt"
+            uzolTyp = TypUzla.Projekt
             uzolId = DirectCast(tag, mProjekt).Id
         ElseIf TypeOf tag Is mOddelenie Then
-            uzolTyp = "Oddelenie"
+            uzolTyp = TypUzla.Oddelenie
             uzolId = DirectCast(tag, mOddelenie).Id
         End If
 
-        If uzolTyp IsNot Nothing AndAlso _zamestnanecCrud.MaUzolZamestnancov(uzolTyp, uzolId) Then
+        If uzolTyp.HasValue AndAlso _zamestnanecCrud.MaUzolZamestnancov(uzolTyp.Value.ToString(), uzolId) Then
             MessageBox.Show(Me, "Uzol nie je možné vymazať, pretože obsahuje priradených zamestnancov.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If

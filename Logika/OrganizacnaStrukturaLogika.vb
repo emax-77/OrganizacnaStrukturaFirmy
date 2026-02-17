@@ -73,7 +73,7 @@ Public Class OrganizacnaStrukturaLogika
             .Id = firma.Id,
             .Nazov = firma.Nazov,
             .Kod = firma.Kod,
-            .Typ = "Firma",
+            .Typ = TypUzla.Firma,
             .Popis = If(typPopisu = "zaradenie",
                         $"Riaditeľ: {firma.Nazov} ({firma.Kod})",
                         $"Firma: {firma.Nazov} ({firma.Kod})")
@@ -82,7 +82,7 @@ Public Class OrganizacnaStrukturaLogika
         For Each divizia In _diviziaCrud.ZiskajDiviziePodlaFirmy(firma.Id)
             vysledok.Add(New mUzolStromu With {
                 .Id = divizia.Id, .RodicId = divizia.FirmaId,
-                .Nazov = divizia.Nazov, .Kod = divizia.Kod, .Typ = "Divizia",
+                .Nazov = divizia.Nazov, .Kod = divizia.Kod, .Typ = TypUzla.Divizia,
                 .Popis = If(typPopisu = "zaradenie",
                             $"Vedúci divízie: {divizia.Nazov} ({divizia.Kod})",
                             $"Divízia: {divizia.Nazov} ({divizia.Kod})")
@@ -90,7 +90,7 @@ Public Class OrganizacnaStrukturaLogika
             For Each projekt In _projektCrud.ZiskajProjektyPodlaDivizie(divizia.Id)
                 vysledok.Add(New mUzolStromu With {
                     .Id = projekt.Id, .RodicId = projekt.DiviziaId,
-                    .Nazov = projekt.Nazov, .Kod = projekt.Kod, .Typ = "Projekt",
+                    .Nazov = projekt.Nazov, .Kod = projekt.Kod, .Typ = TypUzla.Projekt,
                     .Popis = If(typPopisu = "zaradenie",
                                 $"Vedúci projektu: {projekt.Nazov} ({projekt.Kod})",
                                 $"Projekt: {projekt.Nazov} ({projekt.Kod})")
@@ -98,7 +98,7 @@ Public Class OrganizacnaStrukturaLogika
                 For Each oddelenie In _oddelenieCrud.ZiskajOddeleniaPodlaProjektu(projekt.Id)
                     vysledok.Add(New mUzolStromu With {
                         .Id = oddelenie.Id, .RodicId = oddelenie.ProjektId,
-                        .Nazov = oddelenie.Nazov, .Kod = oddelenie.Kod, .Typ = "Oddelenie",
+                        .Nazov = oddelenie.Nazov, .Kod = oddelenie.Kod, .Typ = TypUzla.Oddelenie,
                         .Popis = If(typPopisu = "zaradenie",
                                     $"Vedúci oddelenia: {oddelenie.Nazov} ({oddelenie.Kod})",
                                     $"Oddelenie: {oddelenie.Nazov} ({oddelenie.Kod})")
@@ -114,7 +114,7 @@ Public Class OrganizacnaStrukturaLogika
         Dim vysledok = New List(Of mUzolStromu)
         vysledok.Add(New mUzolStromu With {
             .Id = 0, .Nazov = "Zamestnanec", .Kod = String.Empty,
-            .Typ = "Zamestnanec", .Popis = "Zamestnanec"
+            .Typ = Nothing, .Popis = "Zamestnanec"
         })
         vysledok.AddRange(ZiskajVsetkyUzly("zaradenie"))
         Return vysledok
@@ -136,36 +136,36 @@ Public Class OrganizacnaStrukturaLogika
         _oddelenieCrud.VymazOddelenie(id)
     End Sub
 
-    Public Sub NastavVeduciPodlaZaradenia(zaradenie As String, uzolId As Integer, zamestnanecId As Integer)
-        If String.IsNullOrWhiteSpace(zaradenie) Then
+    Public Sub NastavVeduciPodlaZaradenia(zaradenie As String, uzolTyp As TypUzla?, uzolId As Integer, zamestnanecId As Integer)
+        If Not uzolTyp.HasValue Then
             Return
         End If
 
-        If String.Equals(zaradenie, "Zamestnanec", StringComparison.OrdinalIgnoreCase) Then
-            Return
-        End If
-
-        If zaradenie.StartsWith("Riaditeľ", StringComparison.OrdinalIgnoreCase) Then
-            _firmaCrud.NastavRiaditela(uzolId, zamestnanecId)
-        ElseIf zaradenie.StartsWith("Vedúci divízie", StringComparison.OrdinalIgnoreCase) Then
-            _diviziaCrud.NastavVeduciDivizie(uzolId, zamestnanecId)
-        ElseIf zaradenie.StartsWith("Vedúci projektu", StringComparison.OrdinalIgnoreCase) Then
-            _projektCrud.NastavVeduciProjektu(uzolId, zamestnanecId)
-        ElseIf zaradenie.StartsWith("Vedúci oddelenia", StringComparison.OrdinalIgnoreCase) Then
-            _oddelenieCrud.NastavVeduciOddelenia(uzolId, zamestnanecId)
-        End If
+        Select Case uzolTyp.Value
+            Case TypUzla.Firma
+                _firmaCrud.NastavRiaditela(uzolId, zamestnanecId)
+            Case TypUzla.Divizia
+                _diviziaCrud.NastavVeduciDivizie(uzolId, zamestnanecId)
+            Case TypUzla.Projekt
+                _projektCrud.NastavVeduciProjektu(uzolId, zamestnanecId)
+            Case TypUzla.Oddelenie
+                _oddelenieCrud.NastavVeduciOddelenia(uzolId, zamestnanecId)
+        End Select
     End Sub
 
-    Public Sub ZrusVeduciPodlaZaradenia(zaradenie As String, uzolId As Integer)
-        If zaradenie.StartsWith("Riaditeľ", StringComparison.OrdinalIgnoreCase) Then
-            _firmaCrud.NastavRiaditela(uzolId, Nothing)
-        ElseIf zaradenie.StartsWith("Vedúci divízie", StringComparison.OrdinalIgnoreCase) Then
-            _diviziaCrud.NastavVeduciDivizie(uzolId, Nothing)
-        ElseIf zaradenie.StartsWith("Vedúci projektu", StringComparison.OrdinalIgnoreCase) Then
-            _projektCrud.NastavVeduciProjektu(uzolId, Nothing)
-        ElseIf zaradenie.StartsWith("Vedúci oddelenia", StringComparison.OrdinalIgnoreCase) Then
-            _oddelenieCrud.NastavVeduciOddelenia(uzolId, Nothing)
-        End If
+    Public Sub ZrusVeduciPodlaZaradenia(uzolTyp As TypUzla?, uzolId As Integer)
+        If Not uzolTyp.HasValue Then Return
+
+        Select Case uzolTyp.Value
+            Case TypUzla.Firma
+                _firmaCrud.NastavRiaditela(uzolId, Nothing)
+            Case TypUzla.Divizia
+                _diviziaCrud.NastavVeduciDivizie(uzolId, Nothing)
+            Case TypUzla.Projekt
+                _projektCrud.NastavVeduciProjektu(uzolId, Nothing)
+            Case TypUzla.Oddelenie
+                _oddelenieCrud.NastavVeduciOddelenia(uzolId, Nothing)
+        End Select
     End Sub
 
 End Class

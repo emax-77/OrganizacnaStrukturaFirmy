@@ -7,6 +7,6 @@ Public Class mZamestnanec
     Public Property Email As String
     Public Property Zaradenie As String
     Public Property ZaradenieId As Integer
-    Public Property UzolTyp As String
+    Public Property UzolTyp As TypUzla?
     Public Property UzolId As Integer
 End Class

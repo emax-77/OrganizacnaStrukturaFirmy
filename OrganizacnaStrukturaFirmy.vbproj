@@ -119,6 +119,7 @@
     <Compile Include="Modely\mOddelenie.vb" />
     <Compile Include="Modely\mProjekt.vb" />
     <Compile Include="Modely\mZamestnanec.vb" />
+    <Compile Include="Modely\TypUzla.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

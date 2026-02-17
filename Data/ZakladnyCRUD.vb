@@ -14,4 +14,12 @@ Public MustInherit Class ZakladnyCRUD
     Protected Sub PridajParameter(prikaz As SqlCommand, nazov As String, hodnota As Object)
         prikaz.Parameters.AddWithValue(nazov, If(hodnota, DBNull.Value))
     End Sub
+
+    Protected Function ParseTypUzla(hodnota As String) As TypUzla?
+        Dim vysledok As TypUzla
+        If [Enum].TryParse(hodnota, vysledok) Then
+            Return vysledok
+        End If
+        Return Nothing
+    End Function
 End Class

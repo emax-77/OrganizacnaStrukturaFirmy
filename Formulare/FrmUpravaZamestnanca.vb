@@ -62,7 +62,7 @@ Partial Public Class FrmUpravaZamestnanca
         Dim vybraneZaradenie = DirectCast(cmbZaradenie.SelectedItem, mUzolStromu)
         Dim vybranyUzol = DirectCast(cmbUzol.SelectedItem, mUzolStromu)
 
-        If Not String.Equals(vybraneZaradenie.Popis, "Zamestnanec", StringComparison.OrdinalIgnoreCase) Then
+        If vybraneZaradenie.Typ.HasValue Then
             Dim obsadene = _logika.ExistujeVeduci(vybraneZaradenie.Popis, vybraneZaradenie.Id, _zamestnanecId)
             If obsadene Then
                 MessageBox.Show(Me, "Pre toto zaradenie už existuje vedúci.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Information)

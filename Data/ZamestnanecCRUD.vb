@@ -24,7 +24,7 @@ Public Class ZamestnanecCRUD
                             .Email = If(reader.IsDBNull(5), Nothing, reader.GetString(5)),
                             .Zaradenie = reader.GetString(6),
                             .ZaradenieId = reader.GetInt32(7),
-                            .UzolTyp = reader.GetString(8),
+                            .UzolTyp = ParseTypUzla(reader.GetString(8)),
                             .UzolId = reader.GetInt32(9)
                         })
                     End While
@@ -51,7 +51,7 @@ Public Class ZamestnanecCRUD
                             .Email = If(reader.IsDBNull(5), Nothing, reader.GetString(5)),
                             .Zaradenie = reader.GetString(6),
                             .ZaradenieId = reader.GetInt32(7),
-                            .UzolTyp = reader.GetString(8),
+                            .UzolTyp = ParseTypUzla(reader.GetString(8)),
                             .UzolId = reader.GetInt32(9)
                         }
                     End If
@@ -81,7 +81,7 @@ Public Class ZamestnanecCRUD
                             .Email = If(reader.IsDBNull(5), Nothing, reader.GetString(5)),
                             .Zaradenie = reader.GetString(6),
                             .ZaradenieId = reader.GetInt32(7),
-                            .UzolTyp = reader.GetString(8),
+                            .UzolTyp = ParseTypUzla(reader.GetString(8)),
                             .UzolId = reader.GetInt32(9)
                         })
                     End While
@@ -102,7 +102,7 @@ Public Class ZamestnanecCRUD
                 PridajParameter(prikaz, "@Email", zamestnanec.Email)
                 PridajParameter(prikaz, "@Zaradenie", zamestnanec.Zaradenie)
                 PridajParameter(prikaz, "@ZaradenieId", zamestnanec.ZaradenieId)
-                PridajParameter(prikaz, "@UzolTyp", zamestnanec.UzolTyp)
+                PridajParameter(prikaz, "@UzolTyp", If(zamestnanec.UzolTyp.HasValue, zamestnanec.UzolTyp.Value.ToString(), CObj(DBNull.Value)))
                 PridajParameter(prikaz, "@UzolId", zamestnanec.UzolId)
                 spojenie.Open()
                 Return CInt(prikaz.ExecuteScalar())
@@ -121,7 +121,7 @@ Public Class ZamestnanecCRUD
                 PridajParameter(prikaz, "@Email", zamestnanec.Email)
                 PridajParameter(prikaz, "@Zaradenie", zamestnanec.Zaradenie)
                 PridajParameter(prikaz, "@ZaradenieId", zamestnanec.ZaradenieId)
-                PridajParameter(prikaz, "@UzolTyp", zamestnanec.UzolTyp)
+                PridajParameter(prikaz, "@UzolTyp", If(zamestnanec.UzolTyp.HasValue, zamestnanec.UzolTyp.Value.ToString(), CObj(DBNull.Value)))
                 PridajParameter(prikaz, "@UzolId", zamestnanec.UzolId)
                 PridajParameter(prikaz, "@Id", zamestnanec.Id)
                 spojenie.Open()
