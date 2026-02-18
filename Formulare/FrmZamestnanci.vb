@@ -81,15 +81,17 @@ Partial Public Class FrmZamestnanci
     End Sub
 
     Private Sub gridZamestnanci_KeyDown(sender As Object, e As KeyEventArgs) Handles gridZamestnanci.KeyDown
-        If e.KeyCode = Keys.Delete Then
-            VymazZamestnanca(sender, EventArgs.Empty)
-        End If
-        If e.KeyCode = Keys.Enter Then
-            UpravZamestnanca(sender, EventArgs.Empty)
-        End If
-        If e.KeyCode = Keys.Insert Then
-            PridajZamestnanca(sender, EventArgs.Empty)
-        End If
+        Select Case e.KeyCode
+            Case Keys.Insert
+                PridajZamestnanca(sender, e)
+                e.Handled = True
+            Case Keys.Enter
+                UpravZamestnanca(sender, e)
+                e.Handled = True
+            Case Keys.Delete
+                VymazZamestnanca(sender, e)
+                e.Handled = True
+        End Select
     End Sub
 
 End Class

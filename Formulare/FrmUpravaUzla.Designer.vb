@@ -23,7 +23,7 @@ Partial Class FrmUpravaUzla
         Me.btnOK.Location = New System.Drawing.Point(122, 94)
         Me.btnOK.Name = "btnOK"
         Me.btnOK.Size = New System.Drawing.Size(118, 43)
-        Me.btnOK.TabIndex = 0
+        Me.btnOK.TabIndex = 2
         Me.btnOK.Text = "OK"
         Me.btnOK.UseVisualStyleBackColor = True
         '
@@ -32,7 +32,7 @@ Partial Class FrmUpravaUzla
         Me.btnZrusit.Location = New System.Drawing.Point(282, 94)
         Me.btnZrusit.Name = "btnZrusit"
         Me.btnZrusit.Size = New System.Drawing.Size(101, 43)
-        Me.btnZrusit.TabIndex = 1
+        Me.btnZrusit.TabIndex = 3
         Me.btnZrusit.Text = "Zrušiť"
         Me.btnZrusit.UseVisualStyleBackColor = True
         '
@@ -41,14 +41,14 @@ Partial Class FrmUpravaUzla
         Me.txtNazov.Location = New System.Drawing.Point(88, 38)
         Me.txtNazov.Name = "txtNazov"
         Me.txtNazov.Size = New System.Drawing.Size(152, 22)
-        Me.txtNazov.TabIndex = 2
+        Me.txtNazov.TabIndex = 0
         '
         'txtKod
         '
         Me.txtKod.Location = New System.Drawing.Point(316, 40)
         Me.txtKod.Name = "txtKod"
         Me.txtKod.Size = New System.Drawing.Size(152, 22)
-        Me.txtKod.TabIndex = 3
+        Me.txtKod.TabIndex = 1
         '
         'lblNazov
         '

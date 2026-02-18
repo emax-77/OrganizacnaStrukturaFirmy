@@ -260,15 +260,14 @@ Partial Public Class FrmOrganizacnaStruktura
     End Sub
 
     Private Sub strom_KeyDown(sender As Object, e As KeyEventArgs) Handles strom.KeyDown
-        If e.KeyCode = Keys.Delete Then
-            btnVymazat_Click(sender, EventArgs.Empty)
-        End If
-        If e.KeyCode = Keys.Enter Then
-            btnUpravit_Click(sender, EventArgs.Empty)
-        End If
-        If e.KeyCode = Keys.Insert Then
-            btnPridat_Click(sender, EventArgs.Empty)
-        End If
+        Select Case e.KeyCode
+            Case Keys.Delete
+                btnVymazat_Click(sender, EventArgs.Empty)
+            Case Keys.Enter
+                btnUpravit_Click(sender, EventArgs.Empty)
+            Case Keys.Insert
+                btnPridat_Click(sender, EventArgs.Empty)
+        End Select
     End Sub
 
     Private Sub TableLayoutPanel_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel.Paint
