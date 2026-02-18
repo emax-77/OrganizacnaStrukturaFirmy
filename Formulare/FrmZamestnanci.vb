@@ -35,6 +35,12 @@ Partial Public Class FrmZamestnanci
     Private Sub PridajZamestnanca(sender As Object, e As EventArgs) Handles btnPridat.Click
         _zaradenia = _logika.ZiskajZaradenia()
         _uzly = _logika.ZiskajUzly()
+
+        If _uzly.Count = 0 Then
+            MessageBox.Show(Me, "Najprv vytvor aspoň jeden uzol v organizačnej štruktúre.", "Upozornenie", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
         Using frm As New FrmUpravaZamestnanca(_zaradenia, _uzly, _logika)
             If frm.ShowDialog(Me) = DialogResult.OK Then
                 _logika.UlozZamestnanca(frm.Zamestnanec)

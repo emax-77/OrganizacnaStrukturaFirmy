@@ -26,6 +26,9 @@ Partial Public Class FrmOrganizacnaStruktura
 
     Private Sub NacitajStrom()
         strom.Nodes.Clear()
+        txtNazov.Text = String.Empty
+        txtKod.Text = String.Empty
+        txtVeduci.Text = String.Empty
 
         Dim firma = _logika.ZiskajFirmu()
         If firma Is Nothing Then
