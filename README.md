@@ -4,15 +4,14 @@ WinForms aplikácia vo VB.NET pre správu organizačnej štruktúry firmy a zame
 
 ## Všeobecné poznámky 
 
-Použil som slovenské názvy tried, metód a niektorých premenných.
-V práci používame prevažne MySQL, trochu som bojoval s MS SQL Serverom.
+V práci používame prevažne MySQL, trochu som tu bojoval s MS SQL Serverom.
 V SSMS mi nešlo spustiť naraz všetky SQL príkazy v jednom skripte, aj keď medzi nimi bol príkaz GO – tak som skript rozdelil do dvoch častí. Viď nižšie.
 Nakoľko ide o malý projekt, neriešim tu indexy – len tabuľky a ich väzby.
 Z rovnakého dôvodu sa nepoužíva ORM a LINQ, len čistý ADO.NET.
 Niektoré polia som možno predimenzoval (napr. titul alebo kód). Chápem, že v realite by ich veľkosť závisela od zadania (požiadaviek).
 Nebol som si úplne istý, čo sa bude zapisovať do poľa "Kód", tak som ho nastavil ako String.
 Pre UI som použil len základné WinForms. Je funkčné, ale dosť jednoduché.
-Základné validácie sú implementované, v reálnom projekte by som zrejme riešil aj kontrolu formátu telefónneho čísla, jeho duplicitu atď.
+Niektoré validácie sú implementované, v reálnom projekte by som zrejme riešil aj kontrolu formátu telefónneho čísla, duplicitu atď.
 Je tu naviac možnosť editovať vlastné názvy všetkých uzlov a ich kódy.
 
 ## Poznámky k dátovým triedam
@@ -21,6 +20,14 @@ Dátové triedy dedia z jednej spoločnej triedy `ZakladnyCRUD.vb`.
 Typ uzla organizačnej štruktúry je Enum `TypUzla` (Firma, Divizia, Projekt, Oddelenie).
 `ZaradenieId` je ID uzla, ku ktorému sa viaže zvolené Zaradenie (Riaditeľ/Vedúci divízie/Vedúci projektu/Vedúci oddelenia).
 `ZaradenieTyp` určuje typ vedúcej funkcie – bežný zamestnanec (bez vedúcej funkcie) má `ZaradenieTyp = Nothing`.
+
+## Klávesové skratky
+
+Pre obe záložky (Zamestnanci, Organizačná štruktúra):
+
+- Insert: Pridať nový záznam
+- Delete: Vymazať vybraný záznam
+- Enter:  Upraviť vybraný záznam
 
 ## Nastavenie pripojenia
 
