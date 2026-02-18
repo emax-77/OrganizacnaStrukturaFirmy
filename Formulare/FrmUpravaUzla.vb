@@ -9,6 +9,7 @@ Partial Public Class FrmUpravaUzla
         InitializeComponent()
         txtNazov.Text = nazov
         txtKod.Text = kod
+        Text = If(nazov Is Nothing, "Pridanie uzla", "Úprava uzla")
     End Sub
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click

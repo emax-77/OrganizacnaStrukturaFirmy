@@ -131,7 +131,7 @@ Partial Class FrmOrganizacnaStruktura
         Me.FlowLayoutPanel2.Controls.Add(Me.txtVeduci)
         Me.FlowLayoutPanel2.Location = New System.Drawing.Point(3, 43)
         Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(194, 130)
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(201, 159)
         Me.FlowLayoutPanel2.TabIndex = 1
         '
         'Label1

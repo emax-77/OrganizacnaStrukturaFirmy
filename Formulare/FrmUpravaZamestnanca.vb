@@ -12,6 +12,7 @@ Partial Public Class FrmUpravaZamestnanca
         InitializeComponent()
 
         _logika = logika
+        Text = If(zamestnanec Is Nothing, "Pridanie zamestnanca", "Úprava zamestnanca")
 
         cmbZaradenie.DataSource = zaradenia
         cmbZaradenie.DisplayMember = "Popis"
