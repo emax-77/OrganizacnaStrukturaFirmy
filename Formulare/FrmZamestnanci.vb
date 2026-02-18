@@ -1,7 +1,7 @@
 Imports System.Windows.Forms
 
 Partial Public Class FrmZamestnanci
-    Inherits Form
+    Inherits UserControl
 
     Private ReadOnly _logika As ZamestnanecLogika
     Private _zaradenia As List(Of mUzolStromu)

@@ -1,6 +1,6 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmOrganizacnaStruktura
-    Inherits System.Windows.Forms.Form
+    Inherits System.Windows.Forms.UserControl
 
     Friend WithEvents hlavnySplit As System.Windows.Forms.SplitContainer
     Friend WithEvents strom As System.Windows.Forms.TreeView
@@ -50,12 +50,14 @@ Partial Class FrmOrganizacnaStruktura
         'hlavnySplit.Panel1
         '
         Me.hlavnySplit.Panel1.Controls.Add(Me.strom)
+        Me.hlavnySplit.Panel1MinSize = 250
         '
         'hlavnySplit.Panel2
         '
         Me.hlavnySplit.Panel2.Controls.Add(Me.TableLayoutPanel)
+        Me.hlavnySplit.Panel2MinSize = 300
         Me.hlavnySplit.Size = New System.Drawing.Size(909, 380)
-        Me.hlavnySplit.SplitterDistance = 303
+        Me.hlavnySplit.SplitterDistance = 400
         Me.hlavnySplit.TabIndex = 0
         '
         'strom
@@ -63,7 +65,7 @@ Partial Class FrmOrganizacnaStruktura
         Me.strom.Dock = System.Windows.Forms.DockStyle.Fill
         Me.strom.Location = New System.Drawing.Point(0, 0)
         Me.strom.Name = "strom"
-        Me.strom.Size = New System.Drawing.Size(303, 380)
+        Me.strom.Size = New System.Drawing.Size(400, 380)
         Me.strom.TabIndex = 0
         '
         'TableLayoutPanel
@@ -72,12 +74,13 @@ Partial Class FrmOrganizacnaStruktura
         Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel.Controls.Add(Me.FlowLayoutPanel1, 0, 0)
         Me.TableLayoutPanel.Controls.Add(Me.FlowLayoutPanel2, 0, 1)
-        Me.TableLayoutPanel.Location = New System.Drawing.Point(20, 21)
+        Me.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel.Name = "TableLayoutPanel"
         Me.TableLayoutPanel.RowCount = 2
         Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
         Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel.Size = New System.Drawing.Size(552, 347)
+        Me.TableLayoutPanel.Size = New System.Drawing.Size(505, 380)
         Me.TableLayoutPanel.TabIndex = 0
         '
         'FlowLayoutPanel1
@@ -88,7 +91,7 @@ Partial Class FrmOrganizacnaStruktura
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 3)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(546, 34)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(499, 34)
         Me.FlowLayoutPanel1.TabIndex = 0
         '
         'btnPridat
@@ -188,10 +191,9 @@ Partial Class FrmOrganizacnaStruktura
         '
         'FrmOrganizacnaStruktura
         '
-        Me.ClientSize = New System.Drawing.Size(909, 380)
         Me.Controls.Add(Me.hlavnySplit)
         Me.Name = "FrmOrganizacnaStruktura"
-        Me.Text = "Organizačná štruktúra"
+        Me.Size = New System.Drawing.Size(909, 380)
         Me.hlavnySplit.Panel1.ResumeLayout(False)
         Me.hlavnySplit.Panel2.ResumeLayout(False)
         CType(Me.hlavnySplit, System.ComponentModel.ISupportInitialize).EndInit()

@@ -46,7 +46,8 @@ Partial Class FrmHlavne
         '
         'FrmHlavne
         '
-        Me.ClientSize = New System.Drawing.Size(550, 316)
+        Me.ClientSize = New System.Drawing.Size(1000, 500)
+        Me.MinimumSize = New System.Drawing.Size(800, 400)
         Me.Controls.Add(Me.tabHlavne)
         Me.Name = "FrmHlavne"
         Me.Text = "Organizačná štruktúra firmy"

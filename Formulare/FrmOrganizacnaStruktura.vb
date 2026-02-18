@@ -1,7 +1,7 @@
 Imports System.Windows.Forms
 
 Partial Public Class FrmOrganizacnaStruktura
-    Inherits Form
+    Inherits UserControl
     Private ReadOnly _logika As OrganizacnaStrukturaLogika
     Private ReadOnly _zamestnanecCrud As ZamestnanecCRUD
 
@@ -13,14 +13,6 @@ Partial Public Class FrmOrganizacnaStruktura
     End Sub
 
     Private Sub FrmOrganizacnaStruktura_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        hlavnySplit.Panel1MinSize = 250
-        hlavnySplit.Panel2MinSize = 300
-
-        Dim dostupnaSirka = hlavnySplit.Width
-        Dim preferovana = CInt(dostupnaSirka * 0.55)
-        Dim minLeft = hlavnySplit.Panel1MinSize
-        Dim maxLeft = dostupnaSirka - hlavnySplit.Panel2MinSize
-        hlavnySplit.SplitterDistance = Math.Max(minLeft, Math.Min(preferovana, maxLeft))
         NacitajStrom()
     End Sub
 

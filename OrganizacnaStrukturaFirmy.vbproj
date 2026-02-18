@@ -91,7 +91,7 @@
       <DependentUpon>FrmOrganizacnaStruktura.vb</DependentUpon>
     </Compile>
     <Compile Include="Formulare\FrmOrganizacnaStruktura.vb">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Formulare\FrmUpravaUzla.Designer.vb">
       <DependentUpon>FrmUpravaUzla.vb</DependentUpon>
@@ -109,7 +109,7 @@
       <DependentUpon>FrmZamestnanci.vb</DependentUpon>
     </Compile>
     <Compile Include="Formulare\FrmZamestnanci.vb">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modely\mUzolStromu.vb" />
     <Compile Include="Logika\OrganizacnaStrukturaLogika.vb" />

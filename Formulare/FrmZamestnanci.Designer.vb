@@ -1,6 +1,6 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmZamestnanci
-    Inherits System.Windows.Forms.Form
+    Inherits System.Windows.Forms.UserControl
 
     Friend WithEvents gridZamestnanci As System.Windows.Forms.DataGridView
     Friend WithEvents btnPridat As System.Windows.Forms.Button
@@ -87,11 +87,9 @@ Partial Class FrmZamestnanci
         '
         'FrmZamestnanci
         '
-        Me.AccessibleName = ""
-        Me.ClientSize = New System.Drawing.Size(960, 404)
+        Me.Size = New System.Drawing.Size(960, 404)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Name = "FrmZamestnanci"
-        Me.Text = "Zamestnanci"
         CType(Me.gridZamestnanci, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.FlowLayoutPanel1.ResumeLayout(False)
