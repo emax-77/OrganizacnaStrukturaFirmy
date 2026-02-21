@@ -270,7 +270,4 @@ Partial Public Class FrmOrganizacnaStruktura
         End Select
     End Sub
 
-    Private Sub TableLayoutPanel_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel.Paint
-
-    End Sub
 End Class
